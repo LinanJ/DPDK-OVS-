@@ -1,0 +1,7 @@
+FROM ubuntu:16.04
+RUN apt update -y
+RUN apt-get install -y  numactl
+WORKDIR /root/dpdk
+COPY dpdk-stable-17.11.1 /root/dpdk/.
+ENV PATH "$PATH:/usr/src/dpdk-stable-17.11.1/x86_64-native-linuxapp-gcc/app/"
+
