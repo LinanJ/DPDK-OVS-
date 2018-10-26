@@ -1,0 +1,10 @@
+FROM ubuntu:latest
+RUN apt update -y
+RUN apt-get install -y  numactl libpcap-dev
+WORKDIR /root/dpdk
+COPY dpdk-stable-17.11.1 /root/dpdk/.
+COPY pktgen-3.4.9 /root/pktgen/.
+RUN ln -s /root/pktgen/app/x86_64-native-linuxapp-gcc/pktgen /usr/bin/pktgen
+RUN ln -s /usr/lib/x86_64-linux-gnu/libpcap.so /usr/lib/x86_64-linux-gnu/libpcap.so.1
+ENV PATH "$PATH:/root/dpdk/x86_64-native-linuxapp-gcc/app/"
+
